@@ -300,28 +300,6 @@ export type StorageColumnInputTypes = {
     };
   };
 };
-
-export namespace Models {
-  export type public_User = {
-    id: CodecTypes['pg/int4@1']['output'];
-    email: CodecTypes['pg/text@1']['output'];
-    image: CodecTypes['pg/text@1']['output'] | null;
-    name: CodecTypes['pg/text@1']['output'] | null;
-    mbti: CodecTypes['pg/text@1']['output'] | null;
-    likes: CodecTypes['pg/text@1']['output'] | null;
-    dislikes: CodecTypes['pg/text@1']['output'] | null;
-    createdAt: CodecTypes['pg/timestamptz-string@1']['output'];
-    updatedAt: CodecTypes['pg/timestamptz-string@1']['output'];
-    readonly [RelationKeys]?: never;
-  };
-}
-
-export declare const models: {
-  public: {
-    User: Models.public_User;
-  };
-};
-
 export type TypeMaps = TypeMapsType<
   CodecTypes,
   QueryOperationTypes,
