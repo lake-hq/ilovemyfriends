@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  createdAt     DateTime       @default(now()) @db.Timestamptz(6)
+  id            String         @id @default(uuid())
+  name          String?
+  username      String         @unique
+  note          String?
+  bio           String?
+  characterCard CharacterCard?
+  // Cards written ABOUT this user by others
+  // cardsAboutMe CharacterCard[] @relation("CardsAboutUser")
+
+  // Cards this user has AUTHORED about others
+  // cardsAuthored CharacterCard[] @relation("CardsAuthoredByUser")
+}
+
+model CharacterCard {
+  id       String @id @default(uuid())
+  mbti     String
+  likes    String
+  dislikes String
+  sliders  Json
+
+  // 1. The specific user this card is ABOUT
+  // userId String
+  // user   User   @relation("CardsAboutUser", fields: [userId], references: [id])
+
+  // 2. The specific user who CREATED the card
+  // authorId String
+  // user     User   @relation(fields: [userId], references: [id])
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
+}
