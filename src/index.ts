@@ -1,4 +1,5 @@
 import express, {type Express, type Request, type Response} from "express";
+import multer from "multer";
 import {prisma} from "./lib/prisma.js";
 import {User} from "./generated/prisma/client.js";
 import {error} from "node:console";
@@ -9,8 +10,10 @@ import {
 } from "./lib/users.js";
 
 const app: Express = express();
+const upload = multer();
 const port = 3000;
 
+app.use(upload.none());
 app.use(express.json());
 
 app.get("/", (req: Request, res: Response) => {
