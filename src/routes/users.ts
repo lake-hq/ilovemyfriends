@@ -66,16 +66,19 @@ userRouter.post("/users/create", async (req: Request, res: Response) => {
   }
 });
 
-userRouter.post("/users/search/", async (req: Request, res: Response) => {
-  const {keyword} = req.body;
+userRouter.post(
+  "/users/search-by-keyword/",
+  async (req: Request, res: Response) => {
+    const {keyword} = req.body;
 
-  if (!keyword) res.status(400).send("Request needs a keyword");
+    if (!keyword) res.status(400).send("Request needs a keyword");
 
-  try {
-    const users = await fetchUsersByKeyword(keyword as string);
-    res.status(200).json(users);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send(err);
-  }
-});
+    try {
+      const users = await fetchUsersByKeyword(keyword as string);
+      res.status(200).json(users);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send(err);
+    }
+  },
+);
