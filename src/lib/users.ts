@@ -11,12 +11,12 @@ export async function fetchUsers() {
 
 export async function fetch3RandomUsers(exception: number) {
   const users = await fetchUsers();
-  const filteredUsers = users.filter(user => user.id !== exception);
-
+  const self = users.find(users => users.id == exception);
+  const filteredUsers = users.filter(user => user != self);
   const shuffled = filteredUsers.sort(() => 0.5 - Math.random());
 
   // 3. Take the first 3 elements
-  return shuffled.slice(0, 3);
+  return [self, ...shuffled.slice(0, 3)];
 }
 
 export async function fetchUsersByKeyword(keyword: string) {
