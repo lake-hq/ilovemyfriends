@@ -26,7 +26,7 @@ app.get("/users", async (req: Request, res: Response) => {
   try {
     const users = await fetchUsers();
     console.log(id);
-    res.send(users.filter(user => user.id === Number(id))[0]);
+    res.send(id ? users.filter(user => user.id === Number(id))[0] : users);
   } catch (err) {
     console.error(err);
     res.send(err);
