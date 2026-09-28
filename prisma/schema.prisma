@@ -9,7 +9,7 @@ datasource db {
 
 model User {
   createdAt     DateTime       @default(now()) @db.Timestamptz(6)
-  id            String         @id @default(uuid())
+  id            Int            @id @default(autoincrement())
   name          String
   username      String         @unique
   email         String
@@ -25,7 +25,6 @@ model User {
 }
 
 model CharacterCard {
-  id       Int    @id @default(autoincrement())
   mbti     String
   likes    String
   dislikes String
@@ -38,6 +37,6 @@ model CharacterCard {
   // 2. The specific user who CREATED the card
   // authorId String
   // user     User   @relation(fields: [userId], references: [id])
-  userId String @unique
-  user   User   @relation(fields: [userId], references: [id])
+  userId Int  @unique
+  user   User @relation(fields: [userId], references: [id])
 }

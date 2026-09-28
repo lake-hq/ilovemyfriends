@@ -20,28 +20,35 @@ export type CharacterCardModel = runtime.Types.Result.DefaultSelection<Prisma.$C
 
 export type AggregateCharacterCard = {
   _count: CharacterCardCountAggregateOutputType | null
+  _avg: CharacterCardAvgAggregateOutputType | null
+  _sum: CharacterCardSumAggregateOutputType | null
   _min: CharacterCardMinAggregateOutputType | null
   _max: CharacterCardMaxAggregateOutputType | null
 }
 
+export type CharacterCardAvgAggregateOutputType = {
+  userId: number | null
+}
+
+export type CharacterCardSumAggregateOutputType = {
+  userId: number | null
+}
+
 export type CharacterCardMinAggregateOutputType = {
-  id: string | null
   mbti: string | null
   likes: string | null
   dislikes: string | null
-  userId: string | null
+  userId: number | null
 }
 
 export type CharacterCardMaxAggregateOutputType = {
-  id: string | null
   mbti: string | null
   likes: string | null
   dislikes: string | null
-  userId: string | null
+  userId: number | null
 }
 
 export type CharacterCardCountAggregateOutputType = {
-  id: number
   mbti: number
   likes: number
   dislikes: number
@@ -51,8 +58,15 @@ export type CharacterCardCountAggregateOutputType = {
 }
 
 
+export type CharacterCardAvgAggregateInputType = {
+  userId?: true
+}
+
+export type CharacterCardSumAggregateInputType = {
+  userId?: true
+}
+
 export type CharacterCardMinAggregateInputType = {
-  id?: true
   mbti?: true
   likes?: true
   dislikes?: true
@@ -60,7 +74,6 @@ export type CharacterCardMinAggregateInputType = {
 }
 
 export type CharacterCardMaxAggregateInputType = {
-  id?: true
   mbti?: true
   likes?: true
   dislikes?: true
@@ -68,7 +81,6 @@ export type CharacterCardMaxAggregateInputType = {
 }
 
 export type CharacterCardCountAggregateInputType = {
-  id?: true
   mbti?: true
   likes?: true
   dislikes?: true
@@ -115,6 +127,18 @@ export type CharacterCardAggregateArgs<ExtArgs extends runtime.Types.Extensions.
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: CharacterCardAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: CharacterCardSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: CharacterCardMinAggregateInputType
@@ -145,18 +169,21 @@ export type CharacterCardGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   _count?: CharacterCardCountAggregateInputType | true
+  _avg?: CharacterCardAvgAggregateInputType
+  _sum?: CharacterCardSumAggregateInputType
   _min?: CharacterCardMinAggregateInputType
   _max?: CharacterCardMaxAggregateInputType
 }
 
 export type CharacterCardGroupByOutputType = {
-  id: string
   mbti: string
   likes: string
   dislikes: string
   sliders: runtime.JsonValue
-  userId: string
+  userId: number
   _count: CharacterCardCountAggregateOutputType | null
+  _avg: CharacterCardAvgAggregateOutputType | null
+  _sum: CharacterCardSumAggregateOutputType | null
   _min: CharacterCardMinAggregateOutputType | null
   _max: CharacterCardMaxAggregateOutputType | null
 }
@@ -180,17 +207,15 @@ export type CharacterCardWhereInput = {
   AND?: Prisma.CharacterCardWhereInput | Prisma.CharacterCardWhereInput[]
   OR?: Prisma.CharacterCardWhereInput[]
   NOT?: Prisma.CharacterCardWhereInput | Prisma.CharacterCardWhereInput[]
-  id?: Prisma.StringFilter<"CharacterCard"> | string
   mbti?: Prisma.StringFilter<"CharacterCard"> | string
   likes?: Prisma.StringFilter<"CharacterCard"> | string
   dislikes?: Prisma.StringFilter<"CharacterCard"> | string
   sliders?: Prisma.JsonFilter<"CharacterCard">
-  userId?: Prisma.StringFilter<"CharacterCard"> | string
+  userId?: Prisma.IntFilter<"CharacterCard"> | number
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type CharacterCardOrderByWithRelationInput = {
-  id?: Prisma.SortOrder
   mbti?: Prisma.SortOrder
   likes?: Prisma.SortOrder
   dislikes?: Prisma.SortOrder
@@ -200,8 +225,7 @@ export type CharacterCardOrderByWithRelationInput = {
 }
 
 export type CharacterCardWhereUniqueInput = Prisma.AtLeast<{
-  id?: string
-  userId?: string
+  userId?: number
   AND?: Prisma.CharacterCardWhereInput | Prisma.CharacterCardWhereInput[]
   OR?: Prisma.CharacterCardWhereInput[]
   NOT?: Prisma.CharacterCardWhereInput | Prisma.CharacterCardWhereInput[]
@@ -210,34 +234,33 @@ export type CharacterCardWhereUniqueInput = Prisma.AtLeast<{
   dislikes?: Prisma.StringFilter<"CharacterCard"> | string
   sliders?: Prisma.JsonFilter<"CharacterCard">
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-}, "id" | "userId">
+}, "userId">
 
 export type CharacterCardOrderByWithAggregationInput = {
-  id?: Prisma.SortOrder
   mbti?: Prisma.SortOrder
   likes?: Prisma.SortOrder
   dislikes?: Prisma.SortOrder
   sliders?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   _count?: Prisma.CharacterCardCountOrderByAggregateInput
+  _avg?: Prisma.CharacterCardAvgOrderByAggregateInput
   _max?: Prisma.CharacterCardMaxOrderByAggregateInput
   _min?: Prisma.CharacterCardMinOrderByAggregateInput
+  _sum?: Prisma.CharacterCardSumOrderByAggregateInput
 }
 
 export type CharacterCardScalarWhereWithAggregatesInput = {
   AND?: Prisma.CharacterCardScalarWhereWithAggregatesInput | Prisma.CharacterCardScalarWhereWithAggregatesInput[]
   OR?: Prisma.CharacterCardScalarWhereWithAggregatesInput[]
   NOT?: Prisma.CharacterCardScalarWhereWithAggregatesInput | Prisma.CharacterCardScalarWhereWithAggregatesInput[]
-  id?: Prisma.StringWithAggregatesFilter<"CharacterCard"> | string
   mbti?: Prisma.StringWithAggregatesFilter<"CharacterCard"> | string
   likes?: Prisma.StringWithAggregatesFilter<"CharacterCard"> | string
   dislikes?: Prisma.StringWithAggregatesFilter<"CharacterCard"> | string
   sliders?: Prisma.JsonWithAggregatesFilter<"CharacterCard">
-  userId?: Prisma.StringWithAggregatesFilter<"CharacterCard"> | string
+  userId?: Prisma.IntWithAggregatesFilter<"CharacterCard"> | number
 }
 
 export type CharacterCardCreateInput = {
-  id?: string
   mbti: string
   likes: string
   dislikes: string
@@ -246,16 +269,14 @@ export type CharacterCardCreateInput = {
 }
 
 export type CharacterCardUncheckedCreateInput = {
-  id?: string
   mbti: string
   likes: string
   dislikes: string
   sliders: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  userId: string
+  userId: number
 }
 
 export type CharacterCardUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
   mbti?: Prisma.StringFieldUpdateOperationsInput | string
   likes?: Prisma.StringFieldUpdateOperationsInput | string
   dislikes?: Prisma.StringFieldUpdateOperationsInput | string
@@ -264,25 +285,22 @@ export type CharacterCardUpdateInput = {
 }
 
 export type CharacterCardUncheckedUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
   mbti?: Prisma.StringFieldUpdateOperationsInput | string
   likes?: Prisma.StringFieldUpdateOperationsInput | string
   dislikes?: Prisma.StringFieldUpdateOperationsInput | string
   sliders?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type CharacterCardCreateManyInput = {
-  id?: string
   mbti: string
   likes: string
   dislikes: string
   sliders: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  userId: string
+  userId: number
 }
 
 export type CharacterCardUpdateManyMutationInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
   mbti?: Prisma.StringFieldUpdateOperationsInput | string
   likes?: Prisma.StringFieldUpdateOperationsInput | string
   dislikes?: Prisma.StringFieldUpdateOperationsInput | string
@@ -290,12 +308,11 @@ export type CharacterCardUpdateManyMutationInput = {
 }
 
 export type CharacterCardUncheckedUpdateManyInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
   mbti?: Prisma.StringFieldUpdateOperationsInput | string
   likes?: Prisma.StringFieldUpdateOperationsInput | string
   dislikes?: Prisma.StringFieldUpdateOperationsInput | string
   sliders?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type CharacterCardNullableScalarRelationFilter = {
@@ -304,7 +321,6 @@ export type CharacterCardNullableScalarRelationFilter = {
 }
 
 export type CharacterCardCountOrderByAggregateInput = {
-  id?: Prisma.SortOrder
   mbti?: Prisma.SortOrder
   likes?: Prisma.SortOrder
   dislikes?: Prisma.SortOrder
@@ -312,8 +328,11 @@ export type CharacterCardCountOrderByAggregateInput = {
   userId?: Prisma.SortOrder
 }
 
+export type CharacterCardAvgOrderByAggregateInput = {
+  userId?: Prisma.SortOrder
+}
+
 export type CharacterCardMaxOrderByAggregateInput = {
-  id?: Prisma.SortOrder
   mbti?: Prisma.SortOrder
   likes?: Prisma.SortOrder
   dislikes?: Prisma.SortOrder
@@ -321,10 +340,13 @@ export type CharacterCardMaxOrderByAggregateInput = {
 }
 
 export type CharacterCardMinOrderByAggregateInput = {
-  id?: Prisma.SortOrder
   mbti?: Prisma.SortOrder
   likes?: Prisma.SortOrder
   dislikes?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+}
+
+export type CharacterCardSumOrderByAggregateInput = {
   userId?: Prisma.SortOrder
 }
 
@@ -361,7 +383,6 @@ export type CharacterCardUncheckedUpdateOneWithoutUserNestedInput = {
 }
 
 export type CharacterCardCreateWithoutUserInput = {
-  id?: string
   mbti: string
   likes: string
   dislikes: string
@@ -369,7 +390,6 @@ export type CharacterCardCreateWithoutUserInput = {
 }
 
 export type CharacterCardUncheckedCreateWithoutUserInput = {
-  id?: string
   mbti: string
   likes: string
   dislikes: string
@@ -393,7 +413,6 @@ export type CharacterCardUpdateToOneWithWhereWithoutUserInput = {
 }
 
 export type CharacterCardUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
   mbti?: Prisma.StringFieldUpdateOperationsInput | string
   likes?: Prisma.StringFieldUpdateOperationsInput | string
   dislikes?: Prisma.StringFieldUpdateOperationsInput | string
@@ -401,7 +420,6 @@ export type CharacterCardUpdateWithoutUserInput = {
 }
 
 export type CharacterCardUncheckedUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
   mbti?: Prisma.StringFieldUpdateOperationsInput | string
   likes?: Prisma.StringFieldUpdateOperationsInput | string
   dislikes?: Prisma.StringFieldUpdateOperationsInput | string
@@ -411,7 +429,6 @@ export type CharacterCardUncheckedUpdateWithoutUserInput = {
 
 
 export type CharacterCardSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
   mbti?: boolean
   likes?: boolean
   dislikes?: boolean
@@ -421,7 +438,6 @@ export type CharacterCardSelect<ExtArgs extends runtime.Types.Extensions.Interna
 }, ExtArgs["result"]["characterCard"]>
 
 export type CharacterCardSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
   mbti?: boolean
   likes?: boolean
   dislikes?: boolean
@@ -431,7 +447,6 @@ export type CharacterCardSelectCreateManyAndReturn<ExtArgs extends runtime.Types
 }, ExtArgs["result"]["characterCard"]>
 
 export type CharacterCardSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
   mbti?: boolean
   likes?: boolean
   dislikes?: boolean
@@ -441,7 +456,6 @@ export type CharacterCardSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
 }, ExtArgs["result"]["characterCard"]>
 
 export type CharacterCardSelectScalar = {
-  id?: boolean
   mbti?: boolean
   likes?: boolean
   dislikes?: boolean
@@ -449,7 +463,7 @@ export type CharacterCardSelectScalar = {
   userId?: boolean
 }
 
-export type CharacterCardOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "mbti" | "likes" | "dislikes" | "sliders" | "userId", ExtArgs["result"]["characterCard"]>
+export type CharacterCardOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"mbti" | "likes" | "dislikes" | "sliders" | "userId", ExtArgs["result"]["characterCard"]>
 export type CharacterCardInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -466,12 +480,11 @@ export type $CharacterCardPayload<ExtArgs extends runtime.Types.Extensions.Inter
     user: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: string
     mbti: string
     likes: string
     dislikes: string
     sliders: runtime.JsonValue
-    userId: string
+    userId: number
   }, ExtArgs["result"]["characterCard"]>
   composites: {}
 }
@@ -555,8 +568,8 @@ export interface CharacterCardDelegate<ExtArgs extends runtime.Types.Extensions.
    * // Get first 10 CharacterCards
    * const characterCards = await prisma.characterCard.findMany({ take: 10 })
    * 
-   * // Only select the `id`
-   * const characterCardWithIdOnly = await prisma.characterCard.findMany({ select: { id: true } })
+   * // Only select the `mbti`
+   * const characterCardWithMbtiOnly = await prisma.characterCard.findMany({ select: { mbti: true } })
    * 
    */
   findMany<T extends CharacterCardFindManyArgs>(args?: Prisma.SelectSubset<T, CharacterCardFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CharacterCardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -600,9 +613,9 @@ export interface CharacterCardDelegate<ExtArgs extends runtime.Types.Extensions.
    *   ]
    * })
    * 
-   * // Create many CharacterCards and only return the `id`
-   * const characterCardWithIdOnly = await prisma.characterCard.createManyAndReturn({
-   *   select: { id: true },
+   * // Create many CharacterCards and only return the `mbti`
+   * const characterCardWithMbtiOnly = await prisma.characterCard.createManyAndReturn({
+   *   select: { mbti: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -691,9 +704,9 @@ export interface CharacterCardDelegate<ExtArgs extends runtime.Types.Extensions.
    *   ]
    * })
    * 
-   * // Update zero or more CharacterCards and only return the `id`
-   * const characterCardWithIdOnly = await prisma.characterCard.updateManyAndReturn({
-   *   select: { id: true },
+   * // Update zero or more CharacterCards and only return the `mbti`
+   * const characterCardWithMbtiOnly = await prisma.characterCard.updateManyAndReturn({
+   *   select: { mbti: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -896,12 +909,11 @@ export interface Prisma__CharacterCardClient<T, Null = never, ExtArgs extends ru
  * Fields of the CharacterCard model
  */
 export interface CharacterCardFieldRefs {
-  readonly id: Prisma.FieldRef<"CharacterCard", 'String'>
   readonly mbti: Prisma.FieldRef<"CharacterCard", 'String'>
   readonly likes: Prisma.FieldRef<"CharacterCard", 'String'>
   readonly dislikes: Prisma.FieldRef<"CharacterCard", 'String'>
   readonly sliders: Prisma.FieldRef<"CharacterCard", 'Json'>
-  readonly userId: Prisma.FieldRef<"CharacterCard", 'String'>
+  readonly userId: Prisma.FieldRef<"CharacterCard", 'Int'>
 }
     
 

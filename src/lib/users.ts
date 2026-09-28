@@ -4,16 +4,15 @@ import {prisma} from "./prisma.js";
 export async function fetchUsers() {
   const users = await prisma.user.findMany({
     include: {characterCard: true},
+    omit: {email: true, password: true},
   });
-  console.log(users);
   return users;
 }
 
-export async function fetch3RandomUsers(exception: string) {
+export async function fetch3RandomUsers(exception: number) {
   const users = await fetchUsers();
   const filteredUsers = users.filter(user => user.id !== exception);
 
-  console.log(users);
   const shuffled = filteredUsers.sort(() => 0.5 - Math.random());
 
   // 3. Take the first 3 elements

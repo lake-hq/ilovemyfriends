@@ -76,6 +76,8 @@ export const UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
   username: 'username',
+  email: 'email',
+  password: 'password',
   note: 'note',
   bio: 'bio'
 } as const
@@ -84,7 +86,6 @@ export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof User
 
 
 export const CharacterCardScalarFieldEnum = {
-  id: 'id',
   mbti: 'mbti',
   likes: 'likes',
   dislikes: 'dislikes',
@@ -116,14 +117,6 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
-
-
-export const NullsOrder = {
-  first: 'first',
-  last: 'last'
-} as const
-
-export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
 export const JsonNullValueFilter = {
