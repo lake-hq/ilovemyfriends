@@ -2,7 +2,11 @@ import {User} from "../generated/prisma/client.js";
 import {prisma} from "../lib/prisma.js";
 import express, {Router, type Request, type Response} from "express";
 
-import {fetch3RandomUsers, fetchUsers} from "../lib/users.js";
+import {
+  fetch3RandomUsers,
+  fetchUsers,
+  fetchUsersByKeyword,
+} from "../lib/users.js";
 
 export const userRouter: Router = express.Router();
 
@@ -24,8 +28,12 @@ userRouter.get("/users", async (req: Request, res: Response) => {
 // Select 3 random users (other than self), returns the random users, and self
 
 userRouter.post("/users/random3", async (req: Request, res: Response) => {
+  const exception = req.body.exception as number;
+  if (!exception)
+    res
+      .status(400)
+      .send("Request needs an exception field to be passed in with a user id");
   try {
-    const exception = req.body.exception as number;
     const selfAndRandomUsers = await fetch3RandomUsers(exception);
     res.status(200).send(selfAndRandomUsers);
   } catch (err) {
@@ -35,8 +43,9 @@ userRouter.post("/users/random3", async (req: Request, res: Response) => {
 });
 
 userRouter.post("/users/create", async (req: Request, res: Response) => {
+  const userData: User = req.body;
+  if (!userData) res.status(400).send("Request needs user data to be passed");
   try {
-    const userData: User = req.body;
     const newUser = await prisma.user.create({
       data: {
         ...userData,
@@ -50,9 +59,23 @@ userRouter.post("/users/create", async (req: Request, res: Response) => {
         },
       },
     });
-    res.status(200).send(newUser);
+    res.status(201).send(newUser);
   } catch (err) {
     console.log(err);
+    res.status(500).send(err);
+  }
+});
+
+userRouter.post("/users/search/", async (req: Request, res: Response) => {
+  const {keyword} = req.body;
+
+  if (!keyword) res.status(400).send("Request needs a keyword");
+
+  try {
+    const users = await fetchUsersByKeyword(keyword as string);
+    res.status(200).json(users);
+  } catch (err) {
+    console.error(err);
     res.status(500).send(err);
   }
 });
