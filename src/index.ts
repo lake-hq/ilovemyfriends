@@ -3,22 +3,20 @@ import multer from "multer";
 import {prisma} from "./lib/prisma.js";
 import {User} from "./generated/prisma/client.js";
 import {error} from "node:console";
+import expressListEndpoints from "express-list-endpoints";
+
 import {
   fetch3RandomUsers,
   fetchUsers,
   fetchUsersByKeyword,
 } from "./lib/users.js";
+import {getRoutes} from "./lib/misc.js";
 
 const app: Express = express();
-const upload = multer();
 const port = 3000;
 
 app.use(express.urlencoded());
 app.use(express.json());
-
-app.get("/", (req: Request, res: Response) => {
-  res.send("Welcome to tinder but for pedophiles");
-});
 
 app.get("/users", async (req: Request, res: Response) => {
   const {id} = req.query;
@@ -67,6 +65,10 @@ app.post("/users/random3", async (req: Request, res: Response) => {
   }
 });
 
+app.get("/", (req: Request, res: Response) => {
+  const routes = getRoutes(app);
+  res.status(200).json(routes);
+});
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });
