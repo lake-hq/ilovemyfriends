@@ -10,10 +10,12 @@ datasource db {
 model User {
   createdAt     DateTime       @default(now()) @db.Timestamptz(6)
   id            String         @id @default(uuid())
-  name          String?
+  name          String
   username      String         @unique
-  note          String?
-  bio           String?
+  email         String
+  password      String
+  note          String
+  bio           String
   characterCard CharacterCard?
   // Cards written ABOUT this user by others
   // cardsAboutMe CharacterCard[] @relation("CardsAboutUser")
@@ -23,7 +25,7 @@ model User {
 }
 
 model CharacterCard {
-  id       String @id @default(uuid())
+  id       Int    @id @default(autoincrement())
   mbti     String
   likes    String
   dislikes String
