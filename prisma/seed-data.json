@@ -1,0 +1,70 @@
+[
+  {
+    "createdAt": "2026-09-28T14:56:56.112Z",
+    "id": 2,
+    "name": "Abraham",
+    "username": "ibrahimkhan2012",
+    "email": "abraham.khan@example.com",
+    "password": "abraham2012",
+    "note": "i want to be dominated by humongous black COCK",
+    "bio": "NO ONE loves cock more than me (sub)",
+    "characterCard": {
+      "mbti": "",
+      "likes": "",
+      "dislikes": "",
+      "sliders": {},
+      "userId": 2
+    }
+  },
+  {
+    "createdAt": "2026-09-28T17:50:54.591Z",
+    "id": 3,
+    "name": "User Dude",
+    "username": "userman1000",
+    "email": "user.dude@example.com",
+    "password": "userman1000",
+    "note": "",
+    "bio": "",
+    "characterCard": {
+      "mbti": "",
+      "likes": "",
+      "dislikes": "",
+      "sliders": {},
+      "userId": 3
+    }
+  },
+  {
+    "createdAt": "2026-09-28T17:51:24.747Z",
+    "id": 4,
+    "name": "John Doe",
+    "username": "johndoe2000",
+    "email": "john.doe@example.com",
+    "password": "johndoe2000",
+    "note": "",
+    "bio": "",
+    "characterCard": {
+      "mbti": "",
+      "likes": "",
+      "dislikes": "",
+      "sliders": {},
+      "userId": 4
+    }
+  },
+  {
+    "createdAt": "2026-09-29T07:10:30.450Z",
+    "id": 5,
+    "name": "kha",
+    "username": "niggac3",
+    "email": "kha@example.com",
+    "password": "kha12345",
+    "note": "",
+    "bio": "",
+    "characterCard": {
+      "mbti": "",
+      "likes": "",
+      "dislikes": "",
+      "sliders": {},
+      "userId": 5
+    }
+  }
+]

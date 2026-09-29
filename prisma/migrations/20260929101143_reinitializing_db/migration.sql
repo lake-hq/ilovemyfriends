@@ -1,25 +1,24 @@
 -- CreateTable
 CREATE TABLE "User" (
     "createdAt" TIMESTAMPTZ(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "id" TEXT NOT NULL,
-    "name" TEXT,
+    "name" TEXT NOT NULL,
     "username" TEXT NOT NULL,
-    "note" TEXT,
-    "bio" TEXT,
+    "note" TEXT NOT NULL,
+    "bio" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "password" TEXT NOT NULL,
+    "id" SERIAL NOT NULL,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "CharacterCard" (
-    "id" TEXT NOT NULL,
-    "mbti" TEXT NOT NULL,
-    "likes" TEXT NOT NULL,
-    "dislikes" TEXT NOT NULL,
-    "sliders" JSONB NOT NULL,
-    "userId" TEXT NOT NULL,
-
-    CONSTRAINT "CharacterCard_pkey" PRIMARY KEY ("id")
+    "mbti" TEXT NOT NULL DEFAULT '',
+    "likes" TEXT NOT NULL DEFAULT '',
+    "dislikes" TEXT NOT NULL DEFAULT '',
+    "sliders" JSONB NOT NULL DEFAULT '{}',
+    "userId" INTEGER NOT NULL
 );
 
 -- CreateIndex

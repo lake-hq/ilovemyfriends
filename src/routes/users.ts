@@ -18,7 +18,7 @@ userRouter.get("/users", async (req: Request, res: Response) => {
     console.log(id);
     res
       .status(200)
-      .send(id ? users.filter(user => user.id === Number(id))[0] : users);
+      .send(id ? users.filter(user => user.id === Number(id)) : users);
   } catch (err) {
     console.error(err);
     res.status(500).send(err);
@@ -49,14 +49,7 @@ userRouter.post("/users/create", async (req: Request, res: Response) => {
     const newUser = await prisma.user.create({
       data: {
         ...userData,
-        characterCard: {
-          create: {
-            mbti: "None",
-            likes: "None",
-            dislikes: "None",
-            sliders: {},
-          },
-        },
+        characterCard: {create: {sliders: {}}},
       },
     });
     res.status(201).send(newUser);

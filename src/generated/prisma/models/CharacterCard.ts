@@ -261,18 +261,18 @@ export type CharacterCardScalarWhereWithAggregatesInput = {
 }
 
 export type CharacterCardCreateInput = {
-  mbti: string
-  likes: string
-  dislikes: string
-  sliders: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  mbti?: string
+  likes?: string
+  dislikes?: string
+  sliders?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   user: Prisma.UserCreateNestedOneWithoutCharacterCardInput
 }
 
 export type CharacterCardUncheckedCreateInput = {
-  mbti: string
-  likes: string
-  dislikes: string
-  sliders: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  mbti?: string
+  likes?: string
+  dislikes?: string
+  sliders?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   userId: number
 }
 
@@ -293,10 +293,10 @@ export type CharacterCardUncheckedUpdateInput = {
 }
 
 export type CharacterCardCreateManyInput = {
-  mbti: string
-  likes: string
-  dislikes: string
-  sliders: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  mbti?: string
+  likes?: string
+  dislikes?: string
+  sliders?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   userId: number
 }
 
@@ -383,17 +383,17 @@ export type CharacterCardUncheckedUpdateOneWithoutUserNestedInput = {
 }
 
 export type CharacterCardCreateWithoutUserInput = {
-  mbti: string
-  likes: string
-  dislikes: string
-  sliders: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  mbti?: string
+  likes?: string
+  dislikes?: string
+  sliders?: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
 
 export type CharacterCardUncheckedCreateWithoutUserInput = {
-  mbti: string
-  likes: string
-  dislikes: string
-  sliders: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  mbti?: string
+  likes?: string
+  dislikes?: string
+  sliders?: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
 
 export type CharacterCardCreateOrConnectWithoutUserInput = {
